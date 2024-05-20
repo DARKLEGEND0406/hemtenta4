@@ -1,14 +1,14 @@
 const express = require("express");
-const mysql = require("mysql");
-const bodyParser = require("body-parser");
+const { urlencoded, json } = require("body-parser");
+const { createConnection } = require("mysql");
 
 const app = express();
 const port = 3001;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(urlencoded({ extended: true }));
+app.use(json());
 
-const connection = mysql.createConnection({
+const connection = createConnection({
   host: "localhost",
   user: "root",
   password: "",
@@ -17,11 +17,11 @@ const connection = mysql.createConnection({
 
 connection.connect((err) => {
     if (err) {
-      console.error("Kunde inte ansluta till databasen: " + err.stack);
+      console.error(`Kunde inte ansluta till databasen: ${err.stack}`);
       return;
     }
 
-    console.log("Ansluten till databasen med ID " + connection.threadId);
+    console.log(`Ansluten till databasen med ID ${connection.threadId}`);
 });
 
 app.post("/booking/finish", (req, res) => {
@@ -32,7 +32,7 @@ app.post("/booking/finish", (req, res) => {
     [FirstName, LastName, email, phone, date],
     (error, results, fields) => {
       if (error) {
-        console.error("Fel vid fråga till databasen: " + error.stack);
+        console.error(`Fel vid fråga till databasen: ${error.stack}`);
         return;
       }
 

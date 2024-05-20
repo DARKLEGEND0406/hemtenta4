@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
-import Booking from './Booking';
 import QRCodeComponent from './QRCodeComponent';
 
 function App() {
@@ -36,7 +35,7 @@ function App() {
             <div className="card-main">
               <div className="qr-code">
                 {/* Use the QRCodeComponent to generate the QR code image */}
-                <QRCodeComponent url="http://192.168.0.95:3000/booking" />
+                <QRCodeComponent url="http://127.0.0.1:3000/booking" />
               </div>
             </div>
             <div className="card-footer">Skanna QR-koden för att boka ett möte med Bond</div>
@@ -73,17 +72,13 @@ function App() {
 }
 
 
-function getWeekNumber(d) {
-  // Copy date so don't modify original
-  d = new Date(d);
-  d.setHours(0, 0, 0, 0);
-  // Set to nearest Thursday: current date + 4 - current day number
-  d.setDate(d.getDate() + 4 - (d.getDay() || 7));
-  // Get first day of year
-  const yearStart = new Date(d.getFullYear(), 0, 1);
-  // Calculate full weeks to nearest Thursday
-  const weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
-  // Return array of year and week number
+function getWeekNumber(date) {
+
+  date = new Date(date);
+  date.setHours(0, 0, 0, 0);
+  date.setDate(date.getDate() + 4 - (date.getDay() || 7));
+  const yearStart = new Date(date.getFullYear(), 0, 1);
+  const weekNo = Math.ceil(((date - yearStart) / 86400000 + 1) / 7);
   return weekNo;
 }
 

@@ -13,8 +13,6 @@ const Finish = () => {
 
     console.log(window.history.state)
 
-    console.log(formData)
-
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value})
     }
@@ -22,7 +20,7 @@ const Finish = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('/booking/finish', formData )
+          axios.post('/booking/finish', formData )
     }
 
 
@@ -30,9 +28,9 @@ const Finish = () => {
     <div>
       <form action="" method='post' onSubmit={handleSubmit}>
         <label htmlFor="FirstName">Name</label>
-        <input type="text" name='firstName' id='firstName' onChange={handleChange}/>
+        <input type="text" name='FirstName' id='FirstName' onChange={handleChange}/>
         <label htmlFor="LastName">Last name</label>
-        <input type="text" name='lastName' id='lastName'onChange={handleChange} />
+        <input type="text" name='LastName' id='LastName'onChange={handleChange} />
         <label htmlFor="email">Email</label>
         <input type="email" name='email' id='email' onChange={handleChange}/>
         <label htmlFor="phone">Phone</label>

@@ -16,7 +16,6 @@ const Booking = () => {
         weekends={false}
         dateClick = {handleDateClick}
         />
-        
     )
 }
 

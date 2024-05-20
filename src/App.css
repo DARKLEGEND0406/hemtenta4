@@ -1,24 +1,35 @@
-.App {
+/* Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: Arial, sans-serif;
-  max-width: 800px;
+}
+
+.App {
+  max-width: 100Wh;
   margin: 0 auto;
   padding: 20px;
   background: linear-gradient(to right, #9c27b0, #2196f3);
 }
 
 h1 {
-  color: #333;
+  color: black;
   text-align: center;
+  margin-bottom: 20px;
 }
 
+/* Image */
 img {
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
   border-radius: 50%;
-  display: flex;
-  margin: auto;
+  display: block;
+  margin: 20px auto;
 }
 
+/* Cards Container */
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -26,27 +37,24 @@ img {
   justify-content: center;
 }
 
+/* Individual Card */
 .card {
-  width: 300px;
-  height: 400px;
+  flex: 1 1 calc(50% - 40px);
+  max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
 .card-content {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "title"
-    "main"
-    "footer";
-  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-title {
-  grid-area: title;
   padding: 10px;
   background-color: #333;
   border-top-left-radius: 10px;
@@ -54,62 +62,68 @@ img {
   font-weight: bold;
   font-size: 18px;
   color: #fff;
+  text-align: center;
 }
 
 .card-main {
-  grid-area: main;
+  flex: 1;
   padding: 10px;
   overflow-y: auto;
 }
 
 .card-footer {
-  grid-area: footer;
   padding: 10px;
   background-color: #333;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   font-size: 14px;
   color: #fff;
+  text-align: center;
 }
 
+/* QR Code */
 .qr-code {
   text-align: center;
 }
 
 .qr-code img {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
   margin: 20px auto;
 }
 
+/* Info Section */
 .info {
   color: #333;
+  text-align: center;
 }
 
 .info p {
   margin: 10px 0;
 }
 
-.weather {
+/* Weather and Date */
+.weather, .date {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+  margin: 10px 0;
 }
 
-.weather-icon {
+.weather-icon, .date-icon {
   width: 32px;
   height: 32px;
-  margin: auto;
 }
 
-.date {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+  .card {
+    flex: 1 1 100%;
+  }
 
-.date-icon {
-  width: 32px;
-  height: 32px;
-  margin: auto;
+  img, .qr-code img {
+    width: 80%;
+  }
 }
