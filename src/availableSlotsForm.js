@@ -1,33 +1,34 @@
-// src/AvailableSlotsForm.js
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { useState } from "react";
 
 const AvailableSlotsForm = ({ addSlot }) => {
-  const [slot, setSlot] = useState(new Date());
+	const [date, setDate] = useState("");
+	const [status, setStatus] = useState("ledig");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (slot) {
-      addSlot(slot.toISOString()); // Konverterar datumet till ISO-format
-      setSlot(new Date()); // Återställ datumet till dagens datum efter att det har lagts till
-    }
-  };
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		addSlot(date, status);
+		setDate("");
+	};
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Lägg till ledig tid:
-        <DatePicker
-          selected={slot}
-          onChange={(date) => setSlot(date)}
-          showTimeSelect
-          dateFormat="Pp"
-        />
-      </label>
-      <button type="submit">Lägg till</button>
-    </form>
-  );
+	return (
+		<form onSubmit={handleSubmit}>
+			<input
+				type="datetime-local"
+				value={date}
+				onChange={(e) => setDate(e.target.value)}
+				required
+			/>
+			<select
+				value={status}
+				onChange={(e) => setStatus(e.target.value)}
+				required
+			>
+				<option value="ledig">Ledig</option>
+				<option value="upptagen">Upptagen</option>
+			</select>
+			<button type="submit">Lägg till tid</button>
+		</form>
+	);
 };
 
 export default AvailableSlotsForm;
